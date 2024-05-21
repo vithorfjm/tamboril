@@ -1,4 +1,7 @@
 package br.com.tamboril.repositories;
 
-public class ProductRepository {
+import br.com.tamboril.domain.product.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
 }

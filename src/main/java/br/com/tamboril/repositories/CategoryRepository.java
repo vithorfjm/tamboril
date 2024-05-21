@@ -1,4 +1,7 @@
 package br.com.tamboril.repositories;
 
-public class CategoryRepository {
+import br.com.tamboril.domain.category.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 }
