@@ -53,4 +53,11 @@ public class ProductService {
         return null;
     }
 
+    public List<Product> getAllProductsById(List<Long> ids) {
+        return repository.findAllById(ids);
+    }
+
+    public Integer getTotalAmount(List<Product> products) {
+        return products.stream().mapToInt(product -> product.getPriceInCents()).sum();
+    }
 }

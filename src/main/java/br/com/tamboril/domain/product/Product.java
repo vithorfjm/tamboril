@@ -2,10 +2,13 @@ package br.com.tamboril.domain.product;
 
 import br.com.tamboril.domain.brand.Brand;
 import br.com.tamboril.domain.category.Category;
+import br.com.tamboril.domain.order.Order;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name="product")
+@Table(name="products")
 public class Product {
 
     @Id
@@ -27,6 +30,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToMany(mappedBy = "products")
+    private List<Order> orders;
 
     public Product() {
     }
