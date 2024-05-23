@@ -1,9 +1,11 @@
 package br.com.tamboril.domain.order;
 
+import br.com.tamboril.domain.order_products.OrderProducts;
 import br.com.tamboril.domain.product.Product;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,12 +23,8 @@ public class Order {
 
     private Integer totalItems;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_order",
-            joinColumns = @JoinColumn(name="order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> products;
+    @OneToMany(mappedBy = "order")
+    private List<OrderProducts> orderProducts = new ArrayList<>();
 
     public Order() {
     }
@@ -71,11 +69,11 @@ public class Order {
         this.totalItems = totalItems;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<OrderProducts> getOrderProducts() {
+        return orderProducts;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setOrderProducts(List<OrderProducts> orderProducts) {
+        this.orderProducts = orderProducts;
     }
 }

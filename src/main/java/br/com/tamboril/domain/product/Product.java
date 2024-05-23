@@ -3,8 +3,10 @@ package br.com.tamboril.domain.product;
 import br.com.tamboril.domain.brand.Brand;
 import br.com.tamboril.domain.category.Category;
 import br.com.tamboril.domain.order.Order;
+import br.com.tamboril.domain.order_products.OrderProducts;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,8 +33,8 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToMany(mappedBy = "products")
-    private List<Order> orders;
+    @OneToMany(mappedBy = "product")
+    private List<OrderProducts> orderProducts = new ArrayList<>();
 
     public Product() {
     }
@@ -91,5 +93,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<OrderProducts> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(List<OrderProducts> orderProducts) {
+        this.orderProducts = orderProducts;
     }
 }

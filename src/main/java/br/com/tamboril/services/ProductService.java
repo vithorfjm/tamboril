@@ -20,7 +20,7 @@ public class ProductService {
         this.repository = repository;
     }
 
-    public List<ProductResponseDTO> getProducts() {
+    public List<ProductResponseDTO> getAllProductsDTO() {
         List<ProductResponseDTO> responseList = new ArrayList<>();
         var productData = repository.findAll();
         productData.forEach(data -> {
@@ -37,7 +37,7 @@ public class ProductService {
         return responseList;
     }
 
-    public ProductResponseDTO getProductById(Long id) {
+    public ProductResponseDTO getProductDTOById(Long id) {
         var productData = repository.findById(id);
         if (productData.isPresent()) {
             ProductResponseDTO productResponse = new ProductResponseDTO(
@@ -53,11 +53,8 @@ public class ProductService {
         return null;
     }
 
-    public List<Product> getAllProductsById(List<Long> ids) {
-        return repository.findAllById(ids);
+    public Product getProductEntityById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
     }
 
-    public Integer getTotalAmount(List<Product> products) {
-        return products.stream().mapToInt(product -> product.getPriceInCents()).sum();
-    }
 }
