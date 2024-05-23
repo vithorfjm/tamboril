@@ -6,7 +6,9 @@ import br.com.tamboril.domain.order.OrderResponseDTO;
 import br.com.tamboril.domain.order_products.OrderItemDTO;
 import br.com.tamboril.domain.order_products.OrderProducts;
 import br.com.tamboril.domain.product.Product;
+import br.com.tamboril.repositories.OrderProductsRepository;
 import br.com.tamboril.repositories.OrderRepository;
+import br.com.tamboril.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,13 +57,12 @@ public class OrderService {
     }
 
     private OrderResponseDTO convertOrderToResponseDTO(Order order) {
-        OrderResponseDTO orderResponseDTO = new OrderResponseDTO(
+        return new OrderResponseDTO(
             order.getId(),
             order.getOrderDate(),
             order.getStatus(),
             order.getTotalAmountInCents(),
             order.getTotalItems());
-        return orderResponseDTO;
     }
 
 }

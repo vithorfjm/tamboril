@@ -23,7 +23,7 @@ public class Order {
 
     private Integer totalItems;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderProducts> orderProducts = new ArrayList<>();
 
     public Order() {

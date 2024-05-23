@@ -40,14 +40,15 @@ public class ProductService {
     public ProductResponseDTO getProductDTOById(Long id) {
         var productData = repository.findById(id);
         if (productData.isPresent()) {
+            Product product = productData.get();
             ProductResponseDTO productResponse = new ProductResponseDTO(
-                    productData.get().getId(),
-                    productData.get().getProductName(),
-                    productData.get().getDescription(),
-                    productData.get().getPriceInCents(),
-                    productData.get().getQuantity(),
-                    productData.get().getCategory().getCategoryName(),
-                    productData.get().getBrand().getBrandName());
+                    product.getId(),
+                    product.getProductName(),
+                    product.getDescription(),
+                    product.getPriceInCents(),
+                    product.getQuantity(),
+                    product.getCategory().getCategoryName(),
+                    product.getBrand().getBrandName());
             return productResponse;
         }
         return null;
