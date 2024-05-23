@@ -50,12 +50,17 @@ public class OrderService {
         order.setTotalItems(totalQuantity);
         orderRepository.save(order);
 
+        OrderResponseDTO orderResponseDTO = convertOrderToResponseDTO(order);
+        return orderResponseDTO;
+    }
+
+    private OrderResponseDTO convertOrderToResponseDTO(Order order) {
         OrderResponseDTO orderResponseDTO = new OrderResponseDTO(
-                order.getId(),
-                order.getOrderDate(),
-                order.getStatus(),
-                order.getTotalAmountInCents(),
-                order.getTotalItems());
+            order.getId(),
+            order.getOrderDate(),
+            order.getStatus(),
+            order.getTotalAmountInCents(),
+            order.getTotalItems());
         return orderResponseDTO;
     }
 
